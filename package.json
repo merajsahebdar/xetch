@@ -1,7 +1,7 @@
 {
   "name": "xetch",
   "description": "X Fetch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "private": false,
   "main": "./lib/cjs/index.js",
@@ -22,8 +22,8 @@
     "prepare": "husky install",
     "clean": "rimraf ./lib",
     "build": "npm run clean && npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --build tsconfig.cjs.build.json",
-    "build:esm": "tsc --build tsconfig.esm.build.json",
+    "build:cjs": "tsc --build tsconfig.build.cjs.json",
+    "build:esm": "tsc --build tsconfig.build.esm.json",
     "test": "jest",
     "lint": "eslint --fix \"src/**/*.{ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{ts,tsx}\""

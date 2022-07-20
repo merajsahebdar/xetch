@@ -87,11 +87,11 @@ export function xetch(
   const headers = new Headers(initHeaders);
   const init: RequestInit = { ...xetchInit, headers };
 
-  if (typeof body === 'object' && body !== null) {
+  if (isPlainObject(body)) {
     headers.set('content-type', 'application/json');
     init.body = JSON.stringify(body);
   } else {
-    init.body = body;
+    init.body = body as BodyInit;
   }
 
   const abortController = new AbortController();
@@ -187,4 +187,10 @@ function timeoutFetch({
         clearTimeout(timeoutId);
       });
   });
+}
+
+function isPlainObject(obj: unknown) {
+  return (
+    !!obj && !!(obj = Object.getPrototypeOf(obj)) && !Object.getPrototypeOf(obj)
+  );
 }
